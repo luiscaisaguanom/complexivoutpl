@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -12,20 +12,23 @@
 
     <title>MVPN | SubZona7</title>
     
-    <link rel="icon" href="../../static/base/img/Policia.ico" type="image/png">
+    <link rel="icon" href="{% static 'base/img/Policia.ico' %}" type="image/png">
 
     <!-- Custom fonts for this template-->
-    <link href="../../static/base/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'base/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../../static/base/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="{% static 'base/css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
 
 </head>
 
-<body id="page-top">
+<body id="page-top" class="bg-gradient-primary">
 
     {% block sidebar %}
     <!-- Page Wrapper -->
@@ -42,9 +45,9 @@
                 <div class="sidebar-brand-text mx-3">MVPN <sup>2</sup></div>
             </a>-->
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'bases:home' %}">
                 <div class="sidebar-brand-icon rotate-n-0">
-                    <img src="../../static/base/img/Policia.png " alt="Logo" style="width: 50px; height: 50px;"> <!-- Ajusta la ruta y el tamaño según sea necesario -->
+                    <img src="{% static 'base/img/Policia.png' %}" alt="Logo" style="width: 50px; height: 50px;"> <!-- Ajusta la ruta y el tamaño según sea necesario -->
                 </div>
                 <div class="sidebar-brand-text mx-3">MVPN</div>
             </a>
@@ -55,7 +58,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{% url 'bases:home' %}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -72,7 +75,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-user-shield"></i>
-                    <span>G Personal</span></a>
+                    <span>G.Personal</span></a>
             </li>
 
             
@@ -85,13 +88,13 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Zonas</a>
-                        <a class="collapse-item" href="cards.html">Provincias</a>
+                        <a class="collapse-item" href="{% url 'dependencias:zona_list' %}">Zonas</a>
+                        <a class="collapse-item" href="{% url 'dependencias:provincia_list' %}">Provincias</a>
                         <a class="collapse-item" href="cards.html">Distritos</a>
                         <a class="collapse-item" href="cards.html">Cantones</a>
                         <a class="collapse-item" href="cards.html">Circuitos</a>
                         <a class="collapse-item" href="cards.html">Parroquias</a>
-                        <a class="collapse-item" href="cards.html">Subcircuitos</a>
+                        <a class="collapse-item" href="cards.html">Subcircuito</a>
                     </div>
                 </div>
             </li>
@@ -149,9 +152,9 @@
                 <div id="collapseCatalogos" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="utilities-color.html">Tipo de Mantenimiento</a>
-                        <a class="collapse-item" href="utilities-border.html">Tipo de Vehículo</a>
-                        <a class="collapse-item" href="utilities-animation.html">Rango</a>
+                        <a class="collapse-item" href="{% url 'catalogos:tipomantenimiento_list' %}">Tipo de Mantenimiento</a>
+                        <a class="collapse-item" href="{% url 'catalogos:tipovehiculo_list' %}">Tipo de Vehículo</a>
+                        <a class="collapse-item" href="{% url 'catalogos:rango_list' %}">Rango</a>
                     </div>
                 </div>
             </li>
@@ -309,7 +312,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../../static/base/img/undraw_profile_1.svg"
+                                        <img class="rounded-circle" src="{% static 'base/img/undraw_profile_1.svg' %}"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -321,7 +324,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../../static/base/img/undraw_profile_2.svg"
+                                        <img class="rounded-circle" src="{% static 'base/img/undraw_profile_2.svg' %}"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -333,7 +336,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../../static/base/img/undraw_profile_3.svg"
+                                        <img class="rounded-circle" src="{% static 'base/img/undraw_profile_3.svg' %}"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -367,7 +370,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="../../static/base/img/undraw_profile.svg">
+                                    src="{% static 'base/img/undraw_profile.svg' %}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -451,21 +454,25 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{% url 'bases:logout' %}">Salir</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../../static/base/vendor/jquery/jquery.min.js"></script>
-    <script src="../../static/base/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'base/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../../static/base/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{% static 'base/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../../static/base/js/sb-admin-2.min.js"></script>
+    <script src="{% static 'base/js/sb-admin-2.min.js' %}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'base/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
 
     {% block js_page %}   {% endblock js_page %}
 </body>
