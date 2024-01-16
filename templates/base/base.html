@@ -25,6 +25,8 @@
     <!-- Custom styles for this page -->
     <link href="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
 
+    <link href="{% static 'base/css/bootstrap-datepicker.css' %}" rel="stylesheet">
+
 
 </head>
 
@@ -73,9 +75,9 @@
 
             <!-- Nav Item - Personal -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{% url 'personal:personal_list' %}">
                     <i class="fas fa-user-shield"></i>
-                    <span>G.Personal</span></a>
+                    <span>G Personal</span></a>
             </li>
 
             
@@ -90,18 +92,17 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{% url 'dependencias:zona_list' %}">Zonas</a>
                         <a class="collapse-item" href="{% url 'dependencias:provincia_list' %}">Provincias</a>
-                        <a class="collapse-item" href="cards.html">Distritos</a>
-                        <a class="collapse-item" href="cards.html">Cantones</a>
-                        <a class="collapse-item" href="cards.html">Circuitos</a>
-                        <a class="collapse-item" href="cards.html">Parroquias</a>
-                        <a class="collapse-item" href="cards.html">Subcircuito</a>
+                        <a class="collapse-item" href="{% url 'dependencias:distrito_list' %}">Distritos</a>
+                        <a class="collapse-item" href="{% url 'dependencias:canton_list' %}">Cantones</a>
+                        <a class="collapse-item" href="{% url 'dependencias:circuito_list' %}">Circuitos</a>
+                        <a class="collapse-item" href="{% url 'dependencias:subcircuito_list' %}">Subcircuitos</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Flota Vehicular -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{% url 'flotavehicular:flotavehicular_list' %}">
                     <i class="fas fa-truck-monster"></i>
                     <span>G Flota Vehicular</span></a>
             </li>
@@ -117,6 +118,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="buttons.html">Personal a Subcircuito</a>
                         <a class="collapse-item" href="cards.html">Vehículo a Subcircuito</a>
+                        <a class="collapse-item" href="{% url 'reclamos:quejas_list' %}">Reclamos</a>
                     </div>
                 </div>
             </li>
@@ -461,6 +463,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'base/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
@@ -473,6 +476,7 @@
     <!-- Page level plugins -->
     <script src="{% static 'base/vendor/datatables/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'base/js/bootstrap-datepicker.min.js' %}"></script>
 
     {% block js_page %}   {% endblock js_page %}
 </body>

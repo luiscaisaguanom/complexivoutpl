@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="POST" class="form-inline">
+    {% csrf_token %}
+    <div class="col-xl-12 col-md-12 mb-12">
+        {% if obj %}
+        <div class="card border-left-warning shadow h-100 py-2">
+        {% else %}
+        <div class="card border-left-success shadow h-100 py-2">
+        {% endif %}
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            {% if obj %} Editar {% else %} Nuevo {% endif %} Circuito
+                        </div>    
+                        <div class="dropdown-divider"></div>
+                        <div class="row">
+                            <div class="col-3">
+                                <!--<div class="input-group">
+                                    <input type="text" name="codigo" maxlength="10" class="form-control" required id="id_codigo" placeholder="Código de Zona" value="{% if obj %} {{ obj.codigo }} {% endif %}">
+                                </div>-->
+                                {{ form.canton }}
+                            </div>
+                            <div class="col-3">
+                                <!--<div class="input-group">
+                                    <input type="text" name="codigo" maxlength="10" class="form-control" required id="id_codigo" placeholder="Código de Zona" value="{% if obj %} {{ obj.codigo }} {% endif %}">
+                                </div>-->
+                                {{ form.codigo }}
+                            </div>
+                            <div class="col-3">
+                                <!--<div class="input-group">
+                                    <input type="text" name="nombre" maxlength="40" class="form-control" required id="id_nombre" placeholder="Nombre de Zona" value="{% if obj %} {{ obj.nombre }} {% endif %}">
+                                </div>-->
+                                {{ form.nombre }}
+                            </div>
+                            <div class="col-3">
+                                <!--<div class="input-group">
+                                    <label for="id_estado">Estado </label>
+                                    <input type="checkbox" name="estado" class="form-control" id="id_estado" {% if obj.estado %} checked {% endif %}>
+                                </div>-->
+                                {{ form.estado }}
+                            </div>
+                            <!-- {{ form.as_p }} -->
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-danger"><span class="fa fa-save"></span> Guardar</button>
+                                <a href="{% url 'dependencias:circuito_list' %}" class="btn btn-success"><span class="fa fa-undo"></span> Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>   
+{% endblock content %}
+
+{% block js_page %}
+{% endblock js_page %}

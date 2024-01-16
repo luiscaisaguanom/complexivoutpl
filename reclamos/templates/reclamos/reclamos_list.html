@@ -1,0 +1,97 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Listado de Reclamos</h6>
+            <!-- Agrega los campos de fecha de inicio y fin -->
+            <div class="col-md-3">
+                <input type="text" id="fechaInicio" class="form-control" placeholder="Fecha de inicio">
+            </div>
+            <div class="col-md-3">
+                <input type="text" id="fechaFin" class="form-control" placeholder="Fecha de fin">
+            </div>
+            <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">Acciones:</div>
+                    <a class="dropdown-item" href="#" id="btnImprimir">
+                        <i class="fas fa-print"></i> Imprimir
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            {% if not obj %}
+                <div class="alert alert-info">No hay zonas</div>    
+            {% else %}
+            <table class="table table-striped table-hover">
+                <thead>
+                    <th>Id</th>
+                    <th>Circuito</th>
+                    <th>Subcircuito</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th class="all">Acciones</th>
+                </thead>
+                <tbody>
+                    {% for item in obj %}
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.circuito}}</td>
+                        <td>{{item.subcircuito}}</td>
+                        <td>{{item.tipo}}</td>
+                        <td>{{item.fc|date:"d/m/Y H:i:s"}}</td>
+                        <td>
+                            <a href="" class="btn btn-warning btn-circle" role="button"><i class="far fa-edit"></i></a>
+                            <a href="" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}
+
+{% block js_page %}
+<script>
+    $(document).ready(function(){
+        $('.table').DataTable();
+
+        $('#fechaInicio').datepicker({
+            format: 'dd/mm/yyyy',
+            autoclose: true,
+            todayHighlight: true
+         });
+
+        $('#fechaFin').datepicker({
+            format: 'dd/mm/yyyy',
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $('#btnImprimir').on('click', function () {
+            var fechaInicio = $('#fechaInicio').datepicker('getDate');
+            var fechaFin = $('#fechaFin').datepicker('getDate');
+
+            if (fechaInicio && fechaFin) {
+                var fechaInicioStr = fechaInicio.getDate() + '/' + (fechaInicio.getMonth() + 1) + '/' + fechaInicio.getFullYear();
+                var fechaFinStr = fechaFin.getDate() + '/' + (fechaFin.getMonth() + 1) + '/' + fechaFin.getFullYear();
+
+                var urlImprimir = '{% url "reclamos:quejas_print_all" %}?fecha_inicio=' + fechaInicioStr + '&fecha_fin=' + fechaFinStr;
+
+                window.open(urlImprimir, '_blank');
+            } else {
+                alert('Por favor, seleccione ambas fechas antes de imprimir.');
+            }
+        });
+    });
+</script>
+{% endblock js_page %}

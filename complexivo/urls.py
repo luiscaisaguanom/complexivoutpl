@@ -22,6 +22,9 @@ from django.urls import URLPattern, path, include
 urlpatterns = [
     
     path('',include(('bases.urls','bases'), namespace='bases')),
+    path('reclamos/',include(('reclamos.urls','reclamos'), namespace='reclamos')),
+    path('personal/',include(('personal.urls','personal'), namespace='personal')),
+    path('vehiculos/',include(('flotavehicular.urls','flotavehicular'), namespace='vehiculos')),
     path('dependencias/',include(('dependencias.urls','dependencias'), namespace='dependencias')),
     path('catalogos/',include(('catalogos.urls','catalogos'), namespace='catalogos')),
     path('admin/', admin.site.urls),
